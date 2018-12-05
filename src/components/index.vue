@@ -1,6 +1,6 @@
 <template>
   <div class="view">
-    你好
+    <div></div>
   </div>
 </template>
 

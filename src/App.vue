@@ -35,6 +35,10 @@ export default {
   width: 1200px;
   height: 800px;
   margin: 0 auto;
+  background-color:lightseagreen;
+}
+.el-menu-item{
+  font-size: 18px;
 }
 
 </style>
