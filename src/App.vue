@@ -3,10 +3,9 @@
     <div class="header">
     <el-menu
       :default-active="index"
-      router="true"
+      :router="true"
       class="el-menu-demo"
       mode="horizontal"
-      @select="handleSelect"
       background-color="#545c64"
       text-color="#fff"
       active-text-color="#ffd04b">
@@ -22,7 +21,15 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data() {
+    return {
+      index: this.$route.name
+    }
+  },
+  beforeCreate() {
+
+  }
 }
 </script>
 
@@ -33,7 +40,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   width: 1200px;
-  height: 800px;
+  height: 1000px;
   margin: 0 auto;
   background-color:lightseagreen;
 }

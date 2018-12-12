@@ -6,7 +6,7 @@ import tips from '@/components/tips'
 Vue.use(Router)
 
 export default new Router({
-  mode: "history",
+  // mode: "history",
   routes: [
     {
       path: '/index',
@@ -23,5 +23,8 @@ export default new Router({
       name: 'tips',
       component: tips
     },
-  ]
+  ],
+  // scrollBehavior (to, from, savedPosition) {
+  //   return {x:0,y:0}
+  // }
 })
