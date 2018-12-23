@@ -1,6 +1,5 @@
 //引入axios
 import axios from 'axios'
-import qs from 'qs'
 
 //重复请求取消
 let cancel ,promiseArr = {}
@@ -103,6 +102,7 @@ export default {
           method: 'post',
           url: url,
           data: JSON.stringify(data),//将post请求的数据转化为json对象
+          headers: {'Content-Type': 'application/json; charset=UTF-8'},
           cancelToken: new CancelToken(c => {
             cancel = c
           })

@@ -45,7 +45,7 @@
           clearable
           placeholder="请输入司机姓名"
           prefix-icon="el-icon-search"
-          v-model="msg">
+          v-model="searchName">
         </el-input>
       </div>
       <div class="item"><el-button type="success" @click="search">搜索</el-button></div>
@@ -88,7 +88,7 @@ import axios from '../http'
   export default {
     data() {
       return {
-        msg: '',
+        searchName: '',
         tableData: [
           {name: '王小虎',phone: '',chepai: '1',chexing:'',beizhu:''},
           {name: '王小虎',phone: '',chepai: '1',chexing:'',beizhu:''},
@@ -101,17 +101,42 @@ import axios from '../http'
           {name: '王小虎',phone: '',chepai: '1',chexing:'',beizhu:''},
           {name: '王小虎',phone: '',chepai: '1',chexing:'',beizhu:''},
         ],
-        result: [
-          {name: '',phone: '',chepai: '',chexing:'',beizhu:''},
-        ]
+        result: []
       }
     },
-    mounted() {
 
+    mounted() {
+      axios.get('/v1/userGet').then( res =>{
+        if(res.status == 200) {
+          let userList = res.data.userList
+          for(let i=0; i<10; i++){
+            if(userList[i] == undefined){
+              return
+            }
+            this.tableData[i].name = userList[i].name
+            this.tableData[i].phone = userList[i].phone
+            this.tableData[i].chepai = userList[i].chepai
+            this.tableData[i].chexing = userList[i].chexing
+            this.tableData[i].beizhu = userList[i].beizhu
+          }
+        }
+      })
     },
     methods: {
       search() {
-        console.log(111)
+        if(this.searchName) {
+          axios.get(
+            '/v1/search',
+            {name: this.searchName}
+          ).then( res => {
+            if(res.status == 200) {
+              this.result = res.data.userList
+            }
+            if(res.data.userList == null) {
+              alert("该客户不存在！")
+            }
+          })
+        }
       }
     }
   }

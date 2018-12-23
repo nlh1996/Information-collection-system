@@ -74,13 +74,13 @@
         <el-row>
           <el-col :span="8">
             <el-form-item label="违章扣分:">
-              <el-input v-model="form.koufen" placeholder="输入" style="width:90%"></el-input>
+              <el-input v-model.number="form.koufen" placeholder="输入" style="width:90%"></el-input>
             </el-form-item>
           </el-col>          
           <el-col :span="8">
             <el-form-item label="年检到期:">
               <el-date-picker
-                style="width:260px"
+                style="width:270px"
                 v-model="form.shangpaidate"
                 type="date"
                 placeholder="选择日期">
@@ -90,7 +90,7 @@
           <el-col :span="8">
             <el-form-item label="保险到期:">
               <el-date-picker
-                style="width:260px"
+                style="width:270px"
                 v-model="form.baoxiandate"
                 type="date"
                 placeholder="选择日期">
@@ -102,7 +102,7 @@
           <el-col :span="8">
             <el-form-item label="生日:">
               <el-date-picker
-                style="width:260px"
+                style="width:270px"
                 v-model="form.birth"
                 type="date"
                 placeholder="选择日期">
@@ -178,6 +178,7 @@ import axios from '../http'
     },
     methods: {
       submitForm() {
+        console.log(this.form.birth)
         axios.post(
           '/v1/userSave',
           {
