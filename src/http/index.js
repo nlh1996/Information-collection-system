@@ -72,17 +72,17 @@ axios.interceptors.response.use(response => {
 })
 
 //抽离get,post公共配置
-axios.defaults.baseURL = 'api'
+axios.defaults.baseURL = 'http://localhost:8000'
 
 axios.defaults.headers = {
     'X-Requested-With': 'XMLHttpRequest'
 }
-axios.defaults.timeout = 10000
+axios.defaults.timeout = 5000
 
 export default {
     //get请求
     get (url,params) {
-      return new Promise((resolve,reject) => {
+      return new Promise((resolve) => {
         axios({
           method: 'get',
           url: url,
@@ -97,16 +97,12 @@ export default {
     },
 
     //post请求
-    post (url,data) {
-      return new Promise((resolve,reject) => {
+    post(url, data) {
+      return new Promise((resolve) => {
         axios({
           method: 'post',
           url: url,
-          data: qs.stringify(data),//post请求的数据
-          headers: {
-            'X-Requested-With': 'XMLHttpRequest',
-            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-          },
+          data: JSON.stringify(data),//将post请求的数据转化为json对象
           cancelToken: new CancelToken(c => {
             cancel = c
           })
@@ -114,5 +110,5 @@ export default {
           resolve(res)
         })
       })
-     }
+    },
   }

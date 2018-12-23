@@ -78,10 +78,10 @@
             </el-form-item>
           </el-col>          
           <el-col :span="8">
-            <el-form-item label="上牌日期:">
+            <el-form-item label="年检到期:">
               <el-date-picker
                 style="width:260px"
-                v-model="form.shangpaidata"
+                v-model="form.shangpaidate"
                 type="date"
                 placeholder="选择日期">
               </el-date-picker>
@@ -91,13 +91,30 @@
             <el-form-item label="保险到期:">
               <el-date-picker
                 style="width:260px"
-                v-model="form.baoxiandata"
+                v-model="form.baoxiandate"
                 type="date"
                 placeholder="选择日期">
               </el-date-picker>
             </el-form-item>
           </el-col>
-        </el-row>       
+        </el-row>  
+        <el-row>  
+          <el-col :span="8">
+            <el-form-item label="生日:">
+              <el-date-picker
+                style="width:260px"
+                v-model="form.birth"
+                type="date"
+                placeholder="选择日期">
+              </el-date-picker>
+            </el-form-item>
+          </el-col>
+          <el-col :span="16">
+            <el-form-item label="备注:">
+              <el-input v-model="form.beizhu" placeholder="输入" style="width:100%"></el-input>
+            </el-form-item>
+          </el-col> 
+        </el-row>     
       </el-form>
     </div>
 
@@ -120,17 +137,20 @@
           <i>图片</i>
         </div>
     </div>
+
+    <div class="submit"><el-button @click="submitForm">提交</el-button></div>
   </div>
 </template>
 
 <script scope>
+import axios from '../http'
   export default {
     data() {
       return {
         form: {
-          name: '',id: '',phone: '',chepai: '',
-          company: '',chexing: '',color: '',gps: '',part: '',jinji: '',
-          jinjiphone: '',jinrong: '',koufen: '',shangpaidate: '',baoxiandata: '',
+          name: '',id: '',phone: '',chepai: '',company: '',chexing: '',
+          color: '',gps: '',part: '',jinji: '',jinjiphone: '',birth:'',
+          jinrong: '',koufen: '',shangpaidate: '',baoxiandate: '',beizhu:'',
         },
         picture: [
           {name:"身份证正面",src:''},
@@ -157,22 +177,24 @@
       }
     },
     methods: {
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            alert('submit!');
-          } else {
-            console.log('error submit!!');
-            return false;
+      submitForm() {
+        axios.post(
+          '/v1/userSave',
+          {
+            form1: this.form,
+            form2: this.picture
           }
-        });
+        ).then( res => {
+          if(res.status == 200) {
+            console.log(res.data)
+          }
+        })
       },
       onClick(index) {
         this.index = index
       },
       uploadImg(file) {
         this.picture[this.index].src = file.content
-
       },
       //删除图片
       delImg(index){

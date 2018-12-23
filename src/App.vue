@@ -9,7 +9,7 @@
       background-color="#545c64"
       text-color="#fff"
       active-text-color="#ffd04b">
-      <el-menu-item index="index">首页</el-menu-item>
+      <el-menu-item index="/">首页</el-menu-item>
       <el-menu-item index="collect">信息录入</el-menu-item>
       <el-menu-item index="tips">提醒</el-menu-item>
     </el-menu>
@@ -27,9 +27,6 @@ export default {
       index: this.$route.name
     }
   },
-  beforeCreate() {
-
-  }
 }
 </script>
 
@@ -42,7 +39,7 @@ export default {
   width: 1200px;
   height: 1000px;
   margin: 0 auto;
-  background-color:lightseagreen;
+  background-color: lightgray;
 }
 .el-menu-item{
   font-size: 18px;
