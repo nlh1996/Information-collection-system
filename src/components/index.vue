@@ -25,7 +25,7 @@
         width="150">
       </el-table-column>
       <el-table-column
-        prop="chexing"
+        prop="beizhu"
         label="备注">
       </el-table-column>
     </el-table>
@@ -35,7 +35,8 @@
         background
         :pager-count="5"
         layout="prev, pager, next"
-        :total="1000">
+        :total="10000"
+        @current-change="pageChange">
       </el-pagination>
     </div>
 
@@ -76,7 +77,7 @@
         width="150">
       </el-table-column>
       <el-table-column
-        prop="chexing"
+        prop="beizhu"
         label="备注">
       </el-table-column>
     </el-table>
@@ -90,34 +91,37 @@ import axios from '../http'
       return {
         searchName: '',
         tableData: [
-          {name: '王小虎',phone: '',chepai: '1',chexing:'',beizhu:''},
-          {name: '王小虎',phone: '',chepai: '1',chexing:'',beizhu:''},
-          {name: '王小虎',phone: '',chepai: '1',chexing:'',beizhu:''},
-          {name: '王小虎',phone: '',chepai: '1',chexing:'',beizhu:''},
-          {name: '王小虎',phone: '',chepai: '1',chexing:'',beizhu:''},
-          {name: '王小虎',phone: '',chepai: '1',chexing:'',beizhu:''},
-          {name: '王小虎',phone: '',chepai: '1',chexing:'',beizhu:''},
-          {name: '王小虎',phone: '',chepai: '1',chexing:'',beizhu:''},
-          {name: '王小虎',phone: '',chepai: '1',chexing:'',beizhu:''},
-          {name: '王小虎',phone: '',chepai: '1',chexing:'',beizhu:''},
+          {name: '',phone: '',chepai: '',chexing:'',beizhu:''},          
+          {name: '',phone: '',chepai: '',chexing:'',beizhu:''},          
+          {name: '',phone: '',chepai: '',chexing:'',beizhu:''},          
+          {name: '',phone: '',chepai: '',chexing:'',beizhu:''},          
+          {name: '',phone: '',chepai: '',chexing:'',beizhu:''},          
+          {name: '',phone: '',chepai: '',chexing:'',beizhu:''},          
+          {name: '',phone: '',chepai: '',chexing:'',beizhu:''},          
+          {name: '',phone: '',chepai: '',chexing:'',beizhu:''},          
+          {name: '',phone: '',chepai: '',chexing:'',beizhu:''},          
+          {name: '',phone: '',chepai: '',chexing:'',beizhu:''},          
         ],
-        result: []
+        tableData2: [],
+        result: [],
+        userList: []
       }
     },
 
     mounted() {
       axios.get('/v1/userGet').then( res =>{
         if(res.status == 200) {
-          let userList = res.data.userList
+          this.userList = res.data.userList
           for(let i=0; i<10; i++){
-            if(userList[i] == undefined){
-              return
+            if(this.userList == null || this.userList[i] == undefined){
+              this.tableData.pop()
+            }else{
+              this.tableData[i].name = this.userList[i].name
+              this.tableData[i].phone = this.userList[i].phone
+              this.tableData[i].chepai = this.userList[i].chepai
+              this.tableData[i].chexing = this.userList[i].chexing
+              this.tableData[i].beizhu = this.userList[i].beizhu
             }
-            this.tableData[i].name = userList[i].name
-            this.tableData[i].phone = userList[i].phone
-            this.tableData[i].chepai = userList[i].chepai
-            this.tableData[i].chexing = userList[i].chexing
-            this.tableData[i].beizhu = userList[i].beizhu
           }
         }
       })
@@ -137,7 +141,20 @@ import axios from '../http'
             }
           })
         }
-      }
+      },
+      // 翻页事件
+      pageChange(val) {
+        let temp = (val-1)*10
+        let index = 0
+        this.tableData2 = []
+        for(let i=0+temp; i<10+temp; i++) {
+          if(this.userList[i]) {
+            this.tableData2[index] = this.userList[i] 
+          }
+          index++
+        }
+        this.tableData = this.tableData2
+      },
     }
   }
 </script>

@@ -44,5 +44,11 @@ export default {
 .el-menu-item{
   font-size: 18px;
 }
-
+.el-table td, .el-table th {
+  padding: 6px;
+  text-align: center;
+}
+.el-table .warning-row {
+  background:white;;
+}
 </style>

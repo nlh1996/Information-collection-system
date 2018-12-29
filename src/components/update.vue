@@ -141,7 +141,7 @@
         </div>
     </div>
 
-    <div class="submit"><el-button @click="submitForm">提交</el-button></div>
+    <div class="submit"><el-button @click="submitForm">修改</el-button></div>
   </div>
 </template>
 
@@ -182,19 +182,14 @@ import axios from '../http'
       submitForm() {
         if(!this.form.koufen){this.form.koufen = 0}
         axios.post(
-          '/v1/userSave',
+          '/v1/update',
           {
             form1: this.form,
             form2: this.picture
           }
         ).then( res => {
           if(res.status == 200) {
-            this.$message({
-              message: '成功保存客户信息！',
-              type: 'success'
-            });
-          }else{
-            this.$message.error('发生错误，请检查服务器运行状况！');
+            console.log(res.data)
           }
         })
       },

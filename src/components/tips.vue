@@ -1,15 +1,132 @@
 <template>
   <div class="view">
-    <div class="box"><h2>车辆年检提醒</h2></div>
-    <div class="box"><h2>车辆保险提醒</h2></div>
-    <div class="box"><h2>违章扣分提醒</h2></div>
-    <div class="box"><h2>生日提醒</h2></div>
+    <div class="box"><h3>车辆年检提醒</h3>
+      <el-table
+        :data="tableData1"
+        height="240"
+        border
+        :row-class-name="tableRowClassName"
+        style="width: 375px">
+        <el-table-column
+          prop="name"
+          label="姓名"
+          width="100">
+        </el-table-column>
+        <el-table-column
+          prop="phone"
+          label="联系电话"
+          width="150">
+        </el-table-column>
+        <el-table-column
+          prop="num"
+          label="到期天数(天)"
+          width="120">
+        </el-table-column>
+      </el-table>
+    </div>
+    <div class="box"><h3>车辆保险提醒</h3>
+      <el-table
+        :data="tableData2"
+        height="240"
+        border
+        :row-class-name="tableRowClassName"
+        style="width: 375px">
+        <el-table-column
+          prop="name"
+          label="姓名"
+          width="100">
+        </el-table-column>
+        <el-table-column
+          prop="phone"
+          label="联系电话"
+          width="150">
+        </el-table-column>
+        <el-table-column
+          prop="num"
+          label="到期天数(天)"
+          width="120">
+        </el-table-column>
+      </el-table>
+    </div>
+    <div class="box"><h3>生日提醒</h3>
+      <el-table
+        :data="tableData3"
+        height="240"
+        border
+        :row-class-name="tableRowClassName"
+        style="width: 375px">
+        <el-table-column
+          prop="name"
+          label="姓名"
+          width="100">
+        </el-table-column>
+        <el-table-column
+          prop="phone"
+          label="联系电话"
+          width="150">
+        </el-table-column>
+        <el-table-column
+          prop="num"
+          label="到期天数(天)"
+          width="120">
+        </el-table-column>
+      </el-table>
+    </div>
+    <div class="box"><h3>违章扣分提醒</h3>
+      <el-table
+        :data="tableData4"
+        height="240"
+        border
+        :row-class-name="tableRowClassName"
+        style="width: 375px">
+        <el-table-column
+          prop="name"
+          label="姓名"
+          width="100">
+        </el-table-column>
+        <el-table-column
+          prop="phone"
+          label="联系电话"
+          width="150">
+        </el-table-column>
+        <el-table-column
+          prop="num"
+          label="扣分情况（分）"
+          width="120">
+        </el-table-column>
+      </el-table>
+    </div>
   </div>
 </template>
 
 <script>
+import axios from '../http'
   export default {
-    
+    data() {
+      return {
+        tableData1: [],
+        tableData2: [],
+        tableData3: [],
+        tableData4: [],
+      }
+    },
+    mounted() {
+      axios.get(
+        '/v1/remind'
+      ).then( res => {
+        if(res.status == 200) {
+          this.tableData1 = res.data.tip1
+          this.tableData2 = res.data.tip2
+          this.tableData3 = res.data.tip3
+          this.tableData4 = res.data.tip4
+        }
+      })
+    },
+    methods: {
+      tableRowClassName({row, rowIndex}) {
+        return 'warning-row';
+      }
+    }
   }
 </script>
 
@@ -23,6 +140,16 @@
   background-color:white;
 }
 .box{
-  height: 150px;
+  height: auto;
+  width: 500px;
+  float: left;
+  padding-left: 70px;
 }
+h3{
+  text-align: left;
+  margin: 0;
+  padding: 40px 0 20px 5px;
+  color: #409EFF;
+}
+
 </style>
