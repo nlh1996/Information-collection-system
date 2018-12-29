@@ -1,84 +1,83 @@
 <template>
   <div class="view">
-    <div>
       <h2>车辆及司机信息填写:</h2>
-      <el-form :model="form" label-position="left" label-width="80px">
+      <el-form :model="form" :rules="rules" ref="form" label-position="left" label-width="100px">
         <el-row>
-          <el-col :span="8">
-            <el-form-item label="司机姓名:">
-              <el-input v-model="form.name" placeholder="输入" style="width:90%"></el-input>
+          <el-col :span="8" style="padding-right:15px;">
+            <el-form-item label="司机姓名:" prop="name">
+              <el-input v-model="form.name" placeholder="输入"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="8">
-            <el-form-item label="身份证号:">
-              <el-input v-model="form.id" placeholder="输入" style="width:90%"></el-input>
+          <el-col :span="8" style="padding-right:15px;">
+            <el-form-item label="身份证号:" prop="id">
+              <el-input v-model="form.id" placeholder="输入"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="8">
-            <el-form-item label="手机号:">
-              <el-input v-model="form.phone" placeholder="输入" style="width:90%"></el-input>
+          <el-col :span="8" style="padding-right:15px;">
+            <el-form-item label="手机号:" prop="phone">
+              <el-input v-model="form.phone" placeholder="输入"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row>
-          <el-col :span="8">
-            <el-form-item label="车牌号:">
-              <el-input v-model="form.chepai" placeholder="输入" style="width:90%"></el-input>
+          <el-col :span="8" style="padding-right:15px;">
+            <el-form-item label="车牌号:" prop="chepai">
+              <el-input v-model="form.chepai" placeholder="输入"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="8">
-            <el-form-item label="所属公司:">
-              <el-input v-model="form.company" placeholder="输入" style="width:90%"></el-input>
+          <el-col :span="8" style="padding-right:15px;">
+            <el-form-item label="所属公司:" prop="company">
+              <el-input v-model="form.company" placeholder="输入"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="8">
-            <el-form-item label="车型:">
-              <el-input v-model="form.chexing" placeholder="输入" style="width:90%"></el-input>
+          <el-col :span="8" style="padding-right:15px;">
+            <el-form-item label="车型:" prop="chexing">
+              <el-input v-model="form.chexing" placeholder="输入"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row>
-          <el-col :span="8">
-            <el-form-item label="颜色:">
-              <el-input v-model="form.color" placeholder="输入" style="width:90%"></el-input>
+          <el-col :span="8" style="padding-right:15px;">
+            <el-form-item label="颜色:" prop="color">
+              <el-input v-model="form.color" placeholder="输入"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="8">
-            <el-form-item label="GPS公司:">
-              <el-input v-model="form.GPS" placeholder="输入" style="width:90%"></el-input>
+          <el-col :span="8" style="padding-right:15px;">
+            <el-form-item label="GPS公司:" prop="company">
+              <el-input v-model="form.GPS" placeholder="输入"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="8">
-            <el-form-item label="办证平台:">
-              <el-input v-model="form.part" placeholder="输入" style="width:90%"></el-input>
+          <el-col :span="8" style="padding-right:15px;">
+            <el-form-item label="办证平台:" prop="company">
+              <el-input v-model="form.part" placeholder="输入"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
           <el-row>
-          <el-col :span="8">
-            <el-form-item label="紧急联系人姓名:">
-              <el-input v-model="form.jinji" placeholder="输入" style="width:90%"></el-input>
+          <el-col :span="8" style="padding-right:15px;">
+            <el-form-item label="紧急联系人姓名:" prop="jinji">
+              <el-input v-model="form.jinji" placeholder="输入"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="8">
-            <el-form-item label="紧急联系人号码:">
-              <el-input v-model="form.jinjiphone" placeholder="输入" style="width:90%"></el-input>
+          <el-col :span="8" style="padding-right:15px;">
+            <el-form-item label="紧急联系人号码:" prop="jinjiphone">
+              <el-input v-model="form.jinjiphone" placeholder="输入"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="8">
-            <el-form-item label="金融公司:">
-              <el-input v-model="form.jinrong" placeholder="输入" style="width:90%"></el-input>
+          <el-col :span="8" style="padding-right:15px;">
+            <el-form-item label="金融公司:" prop="company">
+              <el-input v-model="form.jinrong" placeholder="输入"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row>
-          <el-col :span="8">
-            <el-form-item label="违章扣分:">
-              <el-input v-model.number="form.koufen" placeholder="输入" style="width:90%"></el-input>
+          <el-col :span="8" style="padding-right:15px;">
+            <el-form-item label="违章扣分:" prop="koufen">
+              <el-input v-model.number="form.koufen" placeholder="输入"></el-input>
             </el-form-item>
           </el-col>          
-          <el-col :span="8">
-            <el-form-item label="年检到期:">
+          <el-col :span="8" style="padding-right:15px;">
+            <el-form-item label="上牌日期:" prop="shangpaidate">
               <el-date-picker
                 style="width:270px"
                 v-model="form.shangpaidate"
@@ -88,8 +87,8 @@
               </el-date-picker>
             </el-form-item>
           </el-col>
-          <el-col :span="8">
-            <el-form-item label="保险到期:">
+          <el-col :span="8" style="padding-right:15px;">
+            <el-form-item label="保险到期:" prop="baoxiandate">
               <el-date-picker
                 style="width:270px"
                 v-model="form.baoxiandate"
@@ -101,8 +100,8 @@
           </el-col>
         </el-row>  
         <el-row>  
-          <el-col :span="8">
-            <el-form-item label="生日:">
+          <el-col :span="8" style="padding-right:15px;">
+            <el-form-item label="车主生日:" prop="birth">
               <el-date-picker
                 style="width:270px"
                 v-model="form.birth"
@@ -112,14 +111,26 @@
               </el-date-picker>
             </el-form-item>
           </el-col>
-          <el-col :span="16">
-            <el-form-item label="备注:">
-              <el-input v-model="form.beizhu" placeholder="输入" style="width:96%"></el-input>
+          <el-col :span="8" style="padding-right:15px;">
+            <el-form-item label="年检到期:" prop="nianjiandate">
+              <el-date-picker
+                style="width:270px"
+                v-model="form.nianjiandate"
+                type="date"
+                value-format="yyyy/MM/dd"
+                placeholder="选择日期">
+              </el-date-picker>
             </el-form-item>
-          </el-col> 
-        </el-row>     
-      </el-form>
-    </div>
+          </el-col>
+        </el-row> 
+        <el-row>
+          <el-col :span="24">
+            <el-form-item label="备注:">
+              <el-input v-model="form.beizhu" placeholder="输入"></el-input>
+            </el-form-item>
+          </el-col>           
+        </el-row>    
+
 
     <h2>照片上传:</h2>
     <div class="picture" v-for="(item,index) in picture" :key="index" @click="onClick(index)">
@@ -141,7 +152,8 @@
         </div>
     </div>
 
-    <div class="submit"><el-button @click="submitForm">提交</el-button></div>
+    <div class="submit"><el-button @click="submitForm('form')" :loading="btn_state" type="success" style="width:120px;margin-top:10px;">提交</el-button></div>
+    </el-form>
   </div>
 </template>
 
@@ -150,9 +162,10 @@ import axios from '../http'
   export default {
     data() {
       return {
+        btn_state: false,
         form: {
           name: '',id: '',phone: '',chepai: '',company: '',chexing: '',
-          color: '',gps: '',part: '',jinji: '',jinjiphone: '',birth:'',
+          color: '',gps: '',part: '',jinji: '',jinjiphone: '',birth:'',nianjiandate:'',
           jinrong: '',koufen: '',shangpaidate: '',baoxiandate: '',beizhu:'',
         },
         picture: [
@@ -171,31 +184,46 @@ import axios from '../http'
         ],
         index: '',
         rules: {
-          name: [
-            { required: true, message: '请输入活动名称', trigger: 'blur' },
-            { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
-          ],         
+          name: [{required: true,message: '请填写姓名',trigger: 'blur'},{ min: 2, max: 4, message: '长度在 2 到 4 个字符', trigger: 'blur' }],         
+          jinji: [{ min: 2, max: 4, message: '长度在 2 到 4 个字符', trigger: 'blur' }],         
+          id: [{required: true,message: '请填写身份证',trigger: 'blur'},{ min: 18, max: 18, message: '填写正确长度身份证号码', trigger: 'blur' }],                 
+          nianjiandate: [{ type: 'string',required: true, message: '请选择日期', trigger: 'blur' }],         
+          shangpaidate: [{ type: 'string',required: true, message: '请选择日期', trigger: 'blur' }],         
+          baoxiandate: [{ type: 'string',required: true, message: '请选择日期', trigger: 'blur' }],         
+          birth: [{ type: 'string',required: true, message: '请选择日期', trigger: 'blur' }],         
+          phone: [{required: true,message: '请填写联系方式',trigger: 'blur'},{ min: 11, max: 11, message: '号码长度11位', trigger: 'blur' }],                 
+          jinjiphone: [{ min: 11, max: 11, message: '号码长度11位', trigger: 'blur' }],                 
+          koufen: [{ type: 'number', message: '请填写数字类型', trigger: 'blur' }],                 
         } 
       }
     },
     methods: {
-      submitForm() {
-        if(!this.form.koufen){this.form.koufen = 0}
-        axios.post(
-          '/v1/userSave',
-          {
-            form1: this.form,
-            form2: this.picture
-          }
-        ).then( res => {
-          if(res.status == 200) {
-            this.$message({
-              message: '成功保存客户信息！',
-              type: 'success'
-            });
-          }else{
-            this.$message.error('发生错误，请检查服务器运行状况！');
-          }
+      submitForm(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            this.btn_state = true;
+            if(!this.form.koufen){this.form.koufen = 0}
+            axios.post(
+              '/v1/userSave',
+              {
+                form1: this.form,
+                form2: this.picture
+              }
+            ).then( res => {
+              if(res.status == 200) {
+                this.$message({
+                    message: '成功保存客户信息！',
+                    type: 'success'
+                })
+                location.reload()
+              }else{
+                this.$message.error('发生错误，请检查服务器运行状况！');
+              }
+            })
+            } else {
+              this.$message.error('请检查填写内容！');
+              return false;
+            }
         })
       },
       onClick(index) {
@@ -219,7 +247,7 @@ import axios from '../http'
   margin: 0 auto;
   margin-top: 10px;
   width: 1140px;
-  height: 900px;
+  height: 1000px;
   background-color:white;
 }
 h2{

@@ -6,7 +6,7 @@
         height="240"
         border
         :row-class-name="tableRowClassName"
-        style="width: 375px">
+        style="width: 390px">
         <el-table-column
           prop="name"
           label="姓名"
@@ -20,7 +20,7 @@
         <el-table-column
           prop="num"
           label="到期天数(天)"
-          width="120">
+          width="135">
         </el-table-column>
       </el-table>
     </div>
@@ -30,7 +30,7 @@
         height="240"
         border
         :row-class-name="tableRowClassName"
-        style="width: 375px">
+        style="width: 390px">
         <el-table-column
           prop="name"
           label="姓名"
@@ -44,7 +44,7 @@
         <el-table-column
           prop="num"
           label="到期天数(天)"
-          width="120">
+          width="135">
         </el-table-column>
       </el-table>
     </div>
@@ -54,7 +54,7 @@
         height="240"
         border
         :row-class-name="tableRowClassName"
-        style="width: 375px">
+        style="width: 390px">
         <el-table-column
           prop="name"
           label="姓名"
@@ -68,7 +68,7 @@
         <el-table-column
           prop="num"
           label="到期天数(天)"
-          width="120">
+          width="135">
         </el-table-column>
       </el-table>
     </div>
@@ -78,7 +78,7 @@
         height="240"
         border
         :row-class-name="tableRowClassName"
-        style="width: 375px">
+        style="width: 390px">
         <el-table-column
           prop="name"
           label="姓名"
@@ -91,8 +91,8 @@
         </el-table-column>
         <el-table-column
           prop="num"
-          label="扣分情况（分）"
-          width="120">
+          label="扣分情况(分)"
+          width="135">
         </el-table-column>
       </el-table>
     </div>
@@ -136,7 +136,7 @@ import axios from '../http'
   margin: 0 auto;
   margin-top: 10px;
   width: 1140px;
-  height: 900px;
+  height: 800px;
   background-color:white;
 }
 .box{

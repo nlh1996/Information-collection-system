@@ -54,7 +54,8 @@
 
     <el-table
       :data="result"
-      style="width: 100%">
+      style="width: 100%"
+      @row-click="onclick">
       <el-table-column
         fixed
         prop="name"
@@ -91,16 +92,16 @@ import axios from '../http'
       return {
         searchName: '',
         tableData: [
-          {name: '',phone: '',chepai: '',chexing:'',beizhu:''},          
-          {name: '',phone: '',chepai: '',chexing:'',beizhu:''},          
-          {name: '',phone: '',chepai: '',chexing:'',beizhu:''},          
-          {name: '',phone: '',chepai: '',chexing:'',beizhu:''},          
-          {name: '',phone: '',chepai: '',chexing:'',beizhu:''},          
-          {name: '',phone: '',chepai: '',chexing:'',beizhu:''},          
-          {name: '',phone: '',chepai: '',chexing:'',beizhu:''},          
-          {name: '',phone: '',chepai: '',chexing:'',beizhu:''},          
-          {name: '',phone: '',chepai: '',chexing:'',beizhu:''},          
-          {name: '',phone: '',chepai: '',chexing:'',beizhu:''},          
+          {name: '',phone: '',chepai: '',chexing:'',beizhu:'',index:''},          
+          {name: '',phone: '',chepai: '',chexing:'',beizhu:'',index:''},          
+          {name: '',phone: '',chepai: '',chexing:'',beizhu:'',index:''},          
+          {name: '',phone: '',chepai: '',chexing:'',beizhu:'',index:''},          
+          {name: '',phone: '',chepai: '',chexing:'',beizhu:'',index:''},          
+          {name: '',phone: '',chepai: '',chexing:'',beizhu:'',index:''},          
+          {name: '',phone: '',chepai: '',chexing:'',beizhu:'',index:''},          
+          {name: '',phone: '',chepai: '',chexing:'',beizhu:'',index:''},          
+          {name: '',phone: '',chepai: '',chexing:'',beizhu:'',index:''},          
+          {name: '',phone: '',chepai: '',chexing:'',beizhu:'',index:''},                  
         ],
         tableData2: [],
         result: [],
@@ -121,6 +122,7 @@ import axios from '../http'
               this.tableData[i].chepai = this.userList[i].chepai
               this.tableData[i].chexing = this.userList[i].chexing
               this.tableData[i].beizhu = this.userList[i].beizhu
+              this.tableData[i].index = this.userList[i].index
             }
           }
         }
@@ -137,7 +139,10 @@ import axios from '../http'
               this.result = res.data.userList
             }
             if(res.data.userList == null) {
-              alert("该客户不存在！")
+              this.$message({
+                message: '该客户不存在！',
+                type: 'warning'
+              })
             }
           })
         }
@@ -155,6 +160,11 @@ import axios from '../http'
         }
         this.tableData = this.tableData2
       },
+      onclick(row, event, column) {
+        console.log(row)
+        let routeUrl = this.$router.resolve({path:'/update/'+row.index})
+        window.open(routeUrl .href, '_blank');
+      }
     }
   }
 </script>
@@ -165,7 +175,7 @@ import axios from '../http'
   margin: 0 auto;
   margin-top: 10px;
   width: 1140px;
-  height: 900px;
+  height: 1000px;
   background-color:white;
 }
 .search{

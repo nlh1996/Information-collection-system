@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import index from '@/components/index'
 import collect from '@/components/collect'
 import tips from '@/components/tips'
+import update from '@/components/update'
 Vue.use(Router)
 
 export default new Router({
@@ -22,6 +23,11 @@ export default new Router({
       path: '/tips',
       name: 'tips',
       component: tips
+    },
+    {
+      path: '/update/:index',
+      name: 'update',
+      component: update
     },
   ],
   // scrollBehavior (to, from, savedPosition) {
