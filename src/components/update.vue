@@ -122,6 +122,17 @@
               </el-date-picker>
             </el-form-item>
           </el-col>
+          <el-col :span="8" style="padding-right:15px;">
+            <el-form-item label="管理费到期:" prop="nianjiandate">
+              <el-date-picker
+                style="width:270px"
+                v-model="form.managedate"
+                type="date"
+                value-format="yyyy/MM/dd"
+                placeholder="选择日期">
+              </el-date-picker>
+            </el-form-item>
+          </el-col>
         </el-row> 
         <el-row>
           <el-col :span="24">
@@ -152,7 +163,7 @@
         </div>
     </div>
 
-    <div class="submit"><el-button @click="submitForm('form')" :loading="btn_state" type="success" style="width:120px;margin-top:10px;">修改</el-button></div>
+    <div class="submit"><el-button @click="submitForm('form')" :loading="btn_state" type="success" style="width:120px;margin-top:30px;">修改</el-button></div>
     </el-form>
   </div>
 </template>
@@ -166,21 +177,27 @@ import axios from '../http'
         form: {
           name: '',id: '',phone: '',chepai: '',company: '',chexing: '',
           color: '',gps: '',part: '',jinji: '',jinjiphone: '',birth:'',nianjiandate:'',
-          jinrong: '',koufen: '',shangpaidate: '',baoxiandate: '',beizhu:'',
+          jinrong: '',koufen: '',shangpaidate: '',baoxiandate: '',beizhu:'',managedate:''
         },
         picture: [
           {name:"身份证正面",src:''},
           {name:"身份证背面",src:''},
           {name:"驾驶证",src:''},
+          {name:"驾驶证正本",src:''},
+          {name:"驾驶证副本",src:''},
+          {name:"行驶证",src:''},
+          {name:"行驶证正本",src:''},
+          {name:"行驶证副本",src:''},
           {name:"道路运输证",src:''},
           {name:"从业资格证",src:''},
           {name:"登记证书",src:''},
-          {name:"司机头像照片",src:''},
+          {name:"司机头像",src:''},
           {name:"车辆照片",src:''},
           {name:"车辆发票",src:''},
           {name:"合同照片",src:''},
           {name:"交通保险单",src:''},
           {name:"商业保险单",src:''},
+          {name:"人车合影",src:''},
         ],
         index: '',
         rules: {
@@ -190,25 +207,13 @@ import axios from '../http'
           nianjiandate: [{ type: 'string',required: true, message: '请选择日期', trigger: 'blur' }],         
           shangpaidate: [{ type: 'string',required: true, message: '请选择日期', trigger: 'blur' }],         
           baoxiandate: [{ type: 'string',required: true, message: '请选择日期', trigger: 'blur' }],         
+          managedate: [{ type: 'string',required: true, message: '请选择日期', trigger: 'blur' }],         
           birth: [{ type: 'string',required: true, message: '请选择日期', trigger: 'blur' }],         
           phone: [{required: true,message: '请填写联系方式',trigger: 'blur'},{ min: 11, max: 11, message: '号码长度11位', trigger: 'blur' }],                 
           jinjiphone: [{ min: 11, max: 11, message: '号码长度11位', trigger: 'blur' }],                 
           koufen: [{ type: 'number', message: '请填写数字类型', trigger: 'blur' }],                 
         } 
       }
-    },
-    mounted() {
-      axios.get(
-        '/v1/user',
-        {
-          index: this.$router.history.current.params.index
-        }
-      ).then( res => {
-        if(res.status == 200) {
-          this.form = res.data.form.form1
-          this.picture = res.data.form.form2
-        }
-      }) 
     },
     methods: {
       submitForm(formName) {
@@ -217,7 +222,7 @@ import axios from '../http'
             this.btn_state = true;
             if(!this.form.koufen){this.form.koufen = 0}
             axios.post(
-              '/v1/update',
+              '/v1/userSave',
               {
                 form1: this.form,
                 form2: this.picture
@@ -228,7 +233,7 @@ import axios from '../http'
                     message: '成功保存客户信息！',
                     type: 'success'
                 })
-                this.$router.push('/')
+                location.reload()
               }else{
                 this.$message.error('发生错误，请检查服务器运行状况！');
               }
@@ -249,6 +254,7 @@ import axios from '../http'
       delImg(index){
         this.picture[index].src = ''
       },
+
     },
   }
 </script>
@@ -259,7 +265,7 @@ import axios from '../http'
   margin: 0 auto;
   margin-top: 10px;
   width: 1140px;
-  height: 1000px;
+  height: 1300px;
   background-color:white;
 }
 h2{

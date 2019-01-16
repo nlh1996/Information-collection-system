@@ -66,12 +66,12 @@ axios.interceptors.response.use(response => {
     } else {
       err.message = "连接到服务器失败"
     }
-    alert(err.message)
+    console.log(err.message)
     return Promise.resolve(err.response)
 })
 
 //抽离get,post公共配置
-axios.defaults.baseURL = 'http://localhost:8000'
+axios.defaults.baseURL = 'http://192.168.0.110:8000'
 
 axios.defaults.headers = {
     'X-Requested-With': 'XMLHttpRequest'

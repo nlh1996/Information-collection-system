@@ -96,6 +96,30 @@
         </el-table-column>
       </el-table>
     </div>
+    <div class="box"><h3>管理到期提醒</h3>
+      <el-table
+        :data="tableData5"
+        height="240"
+        border
+        :row-class-name="tableRowClassName"
+        style="width: 390px">
+        <el-table-column
+          prop="name"
+          label="姓名"
+          width="100">
+        </el-table-column>
+        <el-table-column
+          prop="phone"
+          label="联系电话"
+          width="150">
+        </el-table-column>
+        <el-table-column
+          prop="num"
+          label="到期天数(天)"
+          width="135">
+        </el-table-column>
+      </el-table>
+    </div>
   </div>
 </template>
 
@@ -108,6 +132,7 @@ import axios from '../http'
         tableData2: [],
         tableData3: [],
         tableData4: [],
+        tableData5: [],
       }
     },
     mounted() {
@@ -119,6 +144,7 @@ import axios from '../http'
           this.tableData2 = res.data.tip2
           this.tableData3 = res.data.tip3
           this.tableData4 = res.data.tip4
+          this.tableData5 = res.data.tip5
         }
       })
     },
@@ -136,7 +162,7 @@ import axios from '../http'
   margin: 0 auto;
   margin-top: 10px;
   width: 1140px;
-  height: 800px;
+  height: 1300px;
   background-color:white;
 }
 .box{

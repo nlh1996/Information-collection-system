@@ -175,7 +175,7 @@ import axios from '../http'
   margin: 0 auto;
   margin-top: 10px;
   width: 1140px;
-  height: 1000px;
+  height: 1300px;
   background-color:white;
 }
 .search{
