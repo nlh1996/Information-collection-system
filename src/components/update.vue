@@ -123,7 +123,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="8" style="padding-right:15px;">
-            <el-form-item label="管理费到期:" prop="nianjiandate">
+            <el-form-item label="管理到期:" prop="managedate">
               <el-date-picker
                 style="width:270px"
                 v-model="form.managedate"
@@ -163,7 +163,7 @@
         </div>
     </div>
 
-    <div class="submit"><el-button @click="submitForm('form')" :loading="btn_state" type="success" style="width:120px;margin-top:30px;">修改</el-button></div>
+    <div class="submit"><el-button @click="submitForm('form')" :loading="btn_state" type="success" style="width:120px;margin-top:10px;">修改</el-button></div>
     </el-form>
   </div>
 </template>
@@ -177,7 +177,7 @@ import axios from '../http'
         form: {
           name: '',id: '',phone: '',chepai: '',company: '',chexing: '',
           color: '',gps: '',part: '',jinji: '',jinjiphone: '',birth:'',nianjiandate:'',
-          jinrong: '',koufen: '',shangpaidate: '',baoxiandate: '',beizhu:'',managedate:''
+          jinrong: '',koufen: '',shangpaidate: '',baoxiandate: '',beizhu:'',
         },
         picture: [
           {name:"身份证正面",src:''},
@@ -191,7 +191,7 @@ import axios from '../http'
           {name:"道路运输证",src:''},
           {name:"从业资格证",src:''},
           {name:"登记证书",src:''},
-          {name:"司机头像",src:''},
+          {name:"司机头像照片",src:''},
           {name:"车辆照片",src:''},
           {name:"车辆发票",src:''},
           {name:"合同照片",src:''},
@@ -206,7 +206,7 @@ import axios from '../http'
           id: [{required: true,message: '请填写身份证',trigger: 'blur'},{ min: 18, max: 18, message: '填写正确长度身份证号码', trigger: 'blur' }],                 
           nianjiandate: [{ type: 'string',required: true, message: '请选择日期', trigger: 'blur' }],         
           shangpaidate: [{ type: 'string',required: true, message: '请选择日期', trigger: 'blur' }],         
-          baoxiandate: [{ type: 'string',required: true, message: '请选择日期', trigger: 'blur' }],         
+          baoxiandate: [{ type: 'string',required: true, message: '请选择日期', trigger: 'blur' }],
           managedate: [{ type: 'string',required: true, message: '请选择日期', trigger: 'blur' }],         
           birth: [{ type: 'string',required: true, message: '请选择日期', trigger: 'blur' }],         
           phone: [{required: true,message: '请填写联系方式',trigger: 'blur'},{ min: 11, max: 11, message: '号码长度11位', trigger: 'blur' }],                 
@@ -215,6 +215,19 @@ import axios from '../http'
         } 
       }
     },
+    mounted() {
+      axios.get(
+        '/v1/user',
+        {
+          index: this.$router.history.current.params.index
+        }
+      ).then( res => {
+        if(res.status == 200) {
+          this.form = res.data.form.form1
+          this.picture = res.data.form.form2
+        }
+      }) 
+    },
     methods: {
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
@@ -222,7 +235,7 @@ import axios from '../http'
             this.btn_state = true;
             if(!this.form.koufen){this.form.koufen = 0}
             axios.post(
-              '/v1/userSave',
+              '/v1/update',
               {
                 form1: this.form,
                 form2: this.picture
@@ -233,7 +246,7 @@ import axios from '../http'
                     message: '成功保存客户信息！',
                     type: 'success'
                 })
-                location.reload()
+                this.$router.push('/')
               }else{
                 this.$message.error('发生错误，请检查服务器运行状况！');
               }
@@ -254,7 +267,6 @@ import axios from '../http'
       delImg(index){
         this.picture[index].src = ''
       },
-
     },
   }
 </script>

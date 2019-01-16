@@ -71,7 +71,8 @@ axios.interceptors.response.use(response => {
 })
 
 //抽离get,post公共配置
-axios.defaults.baseURL = 'http://192.168.0.110:8000'
+//axios.defaults.baseURL = 'http://192.168.0.110:8000'
+axios.defaults.baseURL = 'http://localhost:8000'
 
 axios.defaults.headers = {
     'X-Requested-With': 'XMLHttpRequest'
